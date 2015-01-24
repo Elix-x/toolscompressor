@@ -1,0 +1,56 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+BE SURE THAT YOU ALREADY INSTALLED TOOLS COMPRESSOR TO ECLIPSE LIBS
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+For example let's make dummymod's smoothie tools compatible with toolscompressor slots.
+
+First of all let's check if they are already compatible:
+
+1) Run game with both mods outside of eclipse and try to put in pick's slot.
+2) Open pick's class that you declared in your... extends... :(((
+3) 
+public static void postinit(FMLPostInitialisationEvent event){
+ System.out.println(smoothiepick instanceof ItemPickaxe);
+}
+
+If in console you see "true" - you don't need to make CWire, if you see false, CWire is needed.
+
+
+
+To make one, simply in your init event insert this:
+
+if(Loader.isModLoaded("toolscompressor")){
+MinecraftForge.EVENT_BUS.register(new ValidateMySmoothieToolsEvent());
+}
+
+Create class ValidateMySmoothieToolsEvent
+
+What it will looks like inside:
+
+package one.package.with.dummymod.events;
+
+import code.elix_x.api.toolscompressor.ValidatingToolsEvent;
+import net.minecraft.init.Items;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+public class ValidateMySmoothieToolsEvent{
+
+	public ValidateMySmoothieToolsEvent(){
+		
+	}
+	
+	@SubscribeEvent
+	public void addSmoothies(ValidatingToolsEvent event){
+		event.addSword(DummyMod.smoothiesword);
+		event.addPickaxe(DummyMod.smoothiepick);
+		event.addShovel(DummyMod.smoothiesshov);
+		event.addAxe(DummyMod.smoothiesword);
+		event.addHoe(DummyMod.smoothieModDoesntHaveHoes);
+	}
+}
+
+
+For more info: classes that are responsible for compatibility are in code.elix_x.api.toolscompressor
+All methods contain explanations.

@@ -1,0 +1,12 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+BE SURE THAT YOU ALREADY INSTALLED TOOLS COMPRESSOR TO ECLIPSE LIBS
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+First add in @Mod annotation: dependencies:"required-after:toolscompressor"
+Example:
+
+@Mod(modid="airpressor", name="Air Pressor", version="air.pressor", dependencies:"required-after:toolscompressor")
+
+After you can anything you want...

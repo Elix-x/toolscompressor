@@ -1,0 +1,4 @@
+item.combinedtool.name=Combined tool
+tile.toolscompressor.name=Tools compressor
+container.toolscompressor=Tools compressor
+toolscompressor.start
